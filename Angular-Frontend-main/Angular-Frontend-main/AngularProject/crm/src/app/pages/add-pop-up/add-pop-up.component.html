@@ -1,0 +1,76 @@
+<div class="modal-header">
+  <h2 class="modal-title">MÜŞTERİ EKLE </h2>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <header>
+    <h3> Müşteri bilgileri</h3>
+ </header>
+ <hr>
+  <div class="row">
+      <div class="form-group col-md-6">
+        <label>İsim</label>
+        <input type="text" class="form-control" id="name" placeholder="İsim"  [(ngModel)]="customer.name" >
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Soyisim</label>
+        <input type="text" class="form-control" id="lastName" placeholder="Soyisim"  [(ngModel)]="customer.lastName" >
+      </div></div>
+      <div class="row">
+          <div class="form-group col-md-6">
+            <label >Doğum Tarihi</label><br>
+                <dx-date-box
+                    [(value)] = "test"
+                    type = "date"
+                    dateSerializationFormat = "yyyy-MM-dd"
+                    displayFormat = "dd/MM/yyyy"
+                    >
+                </dx-date-box>
+          </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Müşteri Numarası</label>
+      <input type="text" class="form-control" id="identificationNumber" placeholder="ID"  [(ngModel)]="customer.identificationNumber">  
+    </div> </div>
+
+    <br>
+      <header>
+          <h3> Adres bilgileri</h3>
+      </header>
+      <hr>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">İl</label>
+          <dx-select-box
+            (onValueChanged)="onValueChanged($event)"
+            [(ngModel)]="province"
+            [items]="provincesList"  
+            placeholder="İl Seçiniz"
+            [searchEnabled]="true"
+            [showClearButton]="true">
+          </dx-select-box>
+          </div>
+        <div class="form-group col-md-6">
+          <label for="inputDistrict">İlçe</label>
+          <dx-select-box
+            [(ngModel)]="district"
+            [items]="districtsList"  
+            placeholder="İlçe Seçiniz"
+            [searchEnabled]="true"
+            [showClearButton]="true">
+          </dx-select-box>
+        </div>
+      </div>
+      <div class="left-content">
+        <label for="inputAddress">Adres</label>
+        <dx-text-area
+            [height]="90"
+            [(ngModel)]="customer.address">
+        </dx-text-area>
+    </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="savePopup()" onclick= "window.location.reload(false)"> Kaydet</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')"  >Kapat</button>
+</div>

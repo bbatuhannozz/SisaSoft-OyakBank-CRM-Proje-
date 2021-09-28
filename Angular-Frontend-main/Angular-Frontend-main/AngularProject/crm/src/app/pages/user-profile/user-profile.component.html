@@ -1,0 +1,112 @@
+<div class="card shadow mb-5" style="width: 700px; height: 600px;">
+    
+    <div class="card-header py-3" >
+        <h6 class="m-0 font-weight-bold" style="color: #ED1B2E; text-align: center;"><font size="+3" >Kullanıcı Bilgileri</font></h6>
+    </div>
+
+    <div class="container">
+    <form action="your-action" >
+        <dx-form id="form"
+            [formData]="userDetails"
+            [readOnly]="true"
+            [showColonAfterLabel]="true"
+            [showValidationSummary]="true">
+            
+            <dxi-item itemType="group">
+                <dxi-item dataField="email" >
+                    <dxo-label text="E-mail"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="userName" >
+                    <dxo-label text="Kullanıcı adı"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="fullName" >
+                    <dxo-label text="İsim Soyisim"></dxo-label>
+                </dxi-item>
+            </dxi-item>
+        </dx-form>
+        <dx-button
+            id="update-button"
+            type="danger"
+            text="Bilgileri Güncelle"
+            horizontalAlignment="right"
+            (onClick)="isPopupVisible = true; matchUserDetails(); resetValidation()">
+        </dx-button>
+    </form>
+</div>
+<dx-popup
+    title="Değiştirilebilir Bilgiler"
+    [(visible)]="isPopupVisible"
+    [closeOnOutsideClick]="true"
+    [width]="700"
+    [height]="525">
+    <div *dxTemplate="let data of 'content'">
+        <dx-form id="form"
+            [formData]="userUpdateProfile"
+            [readOnly]="false"
+            [showColonAfterLabel]="true"
+            [showValidationSummary]="true"
+            validationGroup="userData">
+            
+            <dxi-item itemType="group">
+                <dxi-item dataField="formEmail" >
+                    <dxo-label text="E-mail"></dxo-label>
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Email is required">
+                    </dxi-validation-rule>
+                    <dxi-validation-rule 
+                        type="email"
+                        message="Email is invalid">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="formUserName">
+                    <dxo-label text="Kullanıcı adı"></dxo-label>
+                    <dxi-validation-rule 
+                        type="required"
+                        message="User name is required">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="formFullName">
+                    <dxo-label text="İsim Soyisim"></dxo-label>
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Full name is required">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="formPassword" [editorOptions]="{mode: 'password'}">
+                    <dxo-label text="Şifre"></dxo-label>
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Password is required">
+                    </dxi-validation-rule>                    
+                </dxi-item>
+
+            </dxi-item>
+            
+            <dxi-item itemType="group" caption="Şifre Yenilemek İsterseniz Doldurun">
+                <dxi-item dataField="formNewPassword" [editorOptions]="{mode: 'password'}">
+                    <dxo-label text="Yeni şifre"></dxo-label>
+                    <dxi-validation-rule type="custom" 
+                        [validationCallback]="checkNewPassword" 
+                        message="Şifreniz en az 4 karakterden oluşmalıdır">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="confirmNewPassword" [editorOptions]="{mode: 'password'}">
+                    <dxo-label text="Yeni şifre tekrar"></dxo-label>
+                    <dxi-validation-rule type="compare" [comparisonTarget]="passwordComparison"
+                        message="Lütfen şifreyi doğru girdiğinizden emin olun"></dxi-validation-rule>
+                </dxi-item>
+            </dxi-item>
+        </dx-form>
+    </div>    
+    <dxi-toolbar-item widget="dxButton"
+        toolbar="bottom"  
+        location="after"  
+        [options]="{text: 'Güncelle', type:'success', onClick: formValidation,useSubmitBehavior: true,validationGroup:'userData'}">  
+    </dxi-toolbar-item>
+    <dxi-toolbar-item widget="dxButton"
+        toolbar="bottom"  
+        location="after"  
+        [options]="{text: 'Vazgeç', type:'danger', onClick: closePopup}">  
+    </dxi-toolbar-item>
+</dx-popup>

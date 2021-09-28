@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h2 class="modal-title">MÜŞTERİ BİLGİLERİ </h2>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+   <table style="width: 100%;">
+    <ul  style="text-align: left; padding-right: 50px;">
+        <li class=" d-flex justify-content-between align-items-center">Id  <span>{{customer.customerId}}</span></li> <hr>
+        <li class=" d-flex justify-content-between align-items-center">İsim <span> {{customer.lastName}}</span></li><hr>
+        <li class=" d-flex justify-content-between align-items-center">Soy İsim  <span>{{customer.lastName}}</span></li><hr>
+        <li class=" d-flex justify-content-between align-items-center">Doğum Tarihi<span>{{customer.dateOfBirth}}</span></li><hr>
+        <li class=" d-flex justify-content-between align-items-center">Müşteri Numarası <span>{{customer.identificationNumber}}</span></li>
+        
+        <br><br>
+        <h1>Adres</h1><br>
+        <li class=" d-flex justify-content-between align-items-center"><h4>Şehir</h4></li>  <span>{{customer.province}}</span> <hr>
+        <li class=" d-flex justify-content-between align-items-center"><h4>İlçe</h4></li> <span>{{customer.district}}</span> <hr>
+        <li class=" d-flex justify-content-between align-items-center"><h4>Adres</h4></li> <span>{{customer.address}}</span>
+
+    </ul>
+  </table>
+  
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')"  >Kapat</button>
+  </div>

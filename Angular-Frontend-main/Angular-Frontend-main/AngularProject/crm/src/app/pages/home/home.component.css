@@ -1,0 +1,9 @@
+::ng-deep #pie {
+    height: 450px;
+}
+::ng-deep #pie * {
+    margin: 0 auto;
+}
+table {
+    position: relative;
+}

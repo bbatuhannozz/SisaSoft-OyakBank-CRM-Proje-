@@ -1,0 +1,59 @@
+<div class="card shadow mb-5">
+    <div class="card-header py-3" >
+        <h6 class="m-0 font-weight-bold" style="color: #ED1B2E; text-align: center;"><font size="+3" >Müşteri Temsilcileri Listesi</font></h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="data-grid-demo">
+                <dx-data-grid 
+                    #grid
+                    id="gridContainer"
+                    [dataSource] = "tempData"
+                    (onSelectionChanged)="selectionChanged($event)"
+                    (onContentReady)="contentReady($event)"
+                    [hoverStateEnabled]="true"
+                    [showBorders]="true">
+                    
+                    <dxo-selection mode="single"></dxo-selection>
+                    <dxo-master-detail [enabled]="false" template="detail"></dxo-master-detail>
+
+
+                    <dxo-export [enabled]="true"></dxo-export>
+                    <dxo-paging [enabled]="true" [pageSize]="15"></dxo-paging>
+                    <dxo-search-panel [visible]="true"></dxo-search-panel>
+                    <dxo-paging [enabled]="false"></dxo-paging>
+
+
+                    <dxi-column dataField="userName" caption="Kullanıcı İsmi" text="Name"></dxi-column>
+                    <dxi-column dataField="fullName" caption="Tam İsim"></dxi-column>
+                    <dxi-column dataField="email" caption="Email" ></dxi-column>
+                    <dxi-column dataField="customerCount" caption="Alınan Müşteri Sayısı" [width]="170"></dxi-column>
+
+
+                    <div *dxTemplate = "let employee of 'detail'">
+                        <div class="card-header py-2" >
+                            <h4 class="m-0 font-weight-bold" style="color: #ED1B2E; text-align: center;">
+                                Atanan Müşteriler
+                            </h4>
+                        </div>
+                        <div class="employeeInfo">
+                            
+                            
+                            <!-- <p class="employeeNotes">{{employee.data.fullName}}</p> -->
+                            <dx-data-grid
+                                [dataSource] = "customerModels">
+                                    <dxi-column dataField="name"></dxi-column>
+                                    <dxi-column dataField="lastName"></dxi-column>
+                                    <dxi-column dataField="dateOfBirth"></dxi-column>
+                                    <dxi-column dataField="customerId"></dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+
+
+                    <dxo-paging [enabled]="true" [pageSize]="10"></dxo-paging>
+                </dx-data-grid>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+.push-blankarea-md {
+    padding-left: 220px;
+    padding-right: 10px;
+    padding-top: 10px;
+    position: relative;
+    height: 9%;
+}
+
+.push-navbar-md {
+    padding-left: 225px;
+}
+
+.footer {
+    position:fixed;
+    bottom: 0%;
+    width: 100%;
+    padding-left: 225px;
+}
